@@ -134,7 +134,10 @@ class PostageApp {
    * @return  void
    */
   function attach($filename){
-    // TODO
+    $this->_arguments['attachments'][basename($filename)] = array(
+      'content_type'  => mime_content_type($filename),
+      'content'       => base64_encode(file_get_contents($filename))
+    );
   }
   
   /**
