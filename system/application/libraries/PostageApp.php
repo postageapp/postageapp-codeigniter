@@ -17,6 +17,8 @@ class PostageApp {
   var $secure             = TRUE;
   var $host               = 'api.postageapp.com';
   var $recipient_override = '';
+  var $template           = '';
+  var $variables          = array();
   var $_arguments         = array();
   
   /**
@@ -58,6 +60,8 @@ class PostageApp {
     $this->secure             = TRUE;
     $this->host               = 'api.postageapp.com';
     $this->recipient_override = '';
+    $this->template           = '';
+    $this->variables          = array();
     $this->_arguments         = array();
   }
   
@@ -122,11 +126,44 @@ class PostageApp {
     $this->_arguments['content'] = $content;
   }
   
+  
+  /**
+   * Appending attachments to the message
+   *
+   * @access  public
+   * @return  void
+   */
   function attach($filename){
     // TODO
   }
   
-  function message_payload(){
+  /**
+   * Setting PostageApp project template
+   *
+   * @access  public
+   * @return  void
+   */
+  function template($template){
+    $this->_arguments['template'] = $template;
+  }
+  
+  /**
+   * Setting  message variables
+   *
+   * @access  public
+   * @return  void
+   */
+  function variables($variables = array()){
+    $this->_arguments['variables'] = $variables;
+  }
+  
+  /**
+   * Content that gets sent in the API call
+   *
+   * @access  public
+   * @return  array
+   */
+  function payload(){
     $message = array(
       'api_key'   => $this->api_key,
       'uid'       => sha1(time() . json_encode($this->_arguments)),
@@ -139,12 +176,12 @@ class PostageApp {
    * Send Email message via PostageApp
    *
    * @access  public
-   * @return  bool
+   * @return  object
    */
   function send(){
     $protocol = $this->secure ? 'https' : 'http';
     $ch = curl_init($protocol.$this->host.'/v.1.0/send_message.json');
-    curl_setopt($ch, CURLOPT_POSTFIELDS,  json_encode($this->message_payload()));
+    curl_setopt($ch, CURLOPT_POSTFIELDS,  json_encode($this->payload()));
     curl_setopt($ch, CURLOPT_HEADER, false);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
