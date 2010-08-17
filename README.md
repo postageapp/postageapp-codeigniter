@@ -15,7 +15,7 @@ Usage
 -----
 PostageApp for CodeIgniter works very similarly to built-in Email class. Here's a simple example:
 
-    $this->load->library('postageapp);
+    $this->load->library('postageapp');
     
     $this->postageapp->from('sender@test.test');
     $this->postageapp->to('recipient@test.test');

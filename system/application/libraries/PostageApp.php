@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-define('POSTAGEAPP_VERSION', '0.0.1');
+define('POSTAGEAPP_VERSION', '1.0.0');
 
 /**
  * PostageApp Class
@@ -134,9 +134,13 @@ class PostageApp {
    * @return  void
    */
   function attach($filename){
+    $handle = fopen($filename, 'rb');
+    $file_content = fread($handle, filesize($filename));
+    fclose($handle);
+    
     $this->_arguments['attachments'][basename($filename)] = array(
       'content_type'  => mime_content_type($filename),
-      'content'       => base64_encode(file_get_contents($filename))
+      'content'       => chunk_split(base64_encode($file_content), 60, "\n")
     );
   }
   
