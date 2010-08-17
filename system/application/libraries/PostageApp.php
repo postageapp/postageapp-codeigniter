@@ -176,6 +176,12 @@ class PostageApp {
       'uid'       => sha1(time() . json_encode($this->_arguments)),
       'arguments' => $this->_arguments
     );
+    
+    // applying recipient override
+    if($this->recipient_override != ''){
+      $message['arguments']['recipient_override'] = $this->recipient_override;
+    }
+    
     return $message;
   }
   

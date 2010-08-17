@@ -52,3 +52,8 @@ Recipients can be specified in a number of ways. Here's how you define a list of
     ));
     
 For more information about formatting of recipients, templates and variables please see [documentation](http://help.postageapp.com/faqs)
+    
+### Recipient Override
+To override the recipient insert your email address in `config/postageapp.php`:
+
+    $config['recipient_override'] = 'you@example.com';
