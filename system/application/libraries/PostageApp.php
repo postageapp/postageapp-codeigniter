@@ -193,7 +193,7 @@ class PostageApp {
    */
   function send(){
     $protocol = $this->secure ? 'https' : 'http';
-    $ch = curl_init($protocol.$this->host.'/v.1.0/send_message.json');
+    $ch = curl_init($protocol.'://'.$this->host.'/v.1.0/send_message.json');
     curl_setopt($ch, CURLOPT_POSTFIELDS,  json_encode($this->payload()));
     curl_setopt($ch, CURLOPT_HEADER, false);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
