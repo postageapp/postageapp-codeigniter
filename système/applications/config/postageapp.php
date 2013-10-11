@@ -7,16 +7,15 @@
 | The API key for your postageapp.com project
 |
 */
-$config['api_key'] = '';
-
+$config['api_key'] = ''     K5oP3jh2kLcaR8i9sJamzyPeFf2pT7FP;
 /*
 | -------------------------------------------------------------------------
 | POSTAGEAPP HOST
 | -------------------------------------------------------------------------
-| Overwrite it only if you need to change it from the default
+| Overwrite it only if you need  change it from the default
 |
 */
-$config['host'] = 'api.postageapp.com';
+$config['host'] = 'api.postageapp.com'
 
 /*
 | -------------------------------------------------------------------------
@@ -36,7 +35,7 @@ $config['secure'] = TRUE;
 | this to override the recipient.
 |
 */
-$config['recipient_override'] = '';
+$config['recipient_override'] = '';monic.caroline@hotmail.fr
 
 /* End of file postageapp.php */
 /* Location: ./system/application/config/postageapp.php */
